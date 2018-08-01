@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实习的日子," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
+<meta name="keywords" content="实习的日子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernates探针机制测试报告">
+<meta property="og:url" content="http://yoursite.com/2018/07/27/kubernates探针机制测试报告/index.html">
+<meta property="og:site_name" content="chenxuan的个人站">
+<meta property="og:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/20180727/pod-event.png">
+<meta property="og:updated_time" content="2018-07-27T09:50:25.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kubernates探针机制测试报告">
+<meta name="twitter:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
+<meta name="twitter:image" content="http://yoursite.com/img/20180727/pod-event.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/27/kubernates探针机制测试报告/"/>
+
+
+
+
+
+  <title>kubernates探针机制测试报告 | chenxuan的个人站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">chenxuan的个人站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我明白你会来，所以我等</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/27/kubernates探针机制测试报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wzchenxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenxuan的个人站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">kubernates探针机制测试报告</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T00:00:00+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-27T17:50:25+08:00">
+                2018-07-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="滚动升级相关配置"><a href="#滚动升级相关配置" class="headerlink" title="滚动升级相关配置"></a>滚动升级相关配置</h3><p>设定pod节点为3，滚动升级间隔为120s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">replicas: 3</span><br><span class="line"> minReadySeconds: 120 </span><br><span class="line"> strategy:</span><br><span class="line">   rollingUpdate: </span><br><span class="line">     maxSurge: 1   #设定最大波动值由于replicas为3,则整个升级,pod个数在2-4个之间</span><br><span class="line">     maxUnavailable: 1 #滚动升级时允许的最大Unavailable的pod个数</span><br></pre></td></tr></table></figure></p>
+<h3 id="readiness相关配置"><a href="#readiness相关配置" class="headerlink" title="readiness相关配置"></a>readiness相关配置</h3><p>设定第一次启动延迟1min，二次探测时间间隔为15s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">readinessProbe:</span><br><span class="line">  httpGet:</span><br><span class="line">    path: /ssh_demo-0.0.1-SNAPSHOT/Readiness.do</span><br><span class="line">    port: 8080</span><br><span class="line">    httpHeaders:</span><br><span class="line">    - name: X-Custom-Header</span><br><span class="line">      value: Awesome</span><br><span class="line">  initialDelaySeconds: 60</span><br><span class="line">  periodSeconds: 15</span><br></pre></td></tr></table></figure></p>
+<h3 id="测试使用web项目设定"><a href="#测试使用web项目设定" class="headerlink" title="测试使用web项目设定"></a>测试使用web项目设定</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;为使测试结果更明显，通过配置ServletContextListener的contextInitialized让主线程sleep3min，<strong>设定在k8s环境中服务启动时间大概为5-12min</strong>（服务可能会提早准备完成）</p>
+<h3 id="测试使用脚本设定"><a href="#测试使用脚本设定" class="headerlink" title="测试使用脚本设定"></a>测试使用脚本设定</h3><p>每次启动发送400次请求，输出日志格式为：data {ip=接收到的请求次数} 脚本运行完成时间</p>
+<hr>
+<h3 id="测试结果分析"><a href="#测试结果分析" class="headerlink" title="测试结果分析"></a>测试结果分析</h3><p>&#x25B6;&nbsp;&nbsp;<strong>初始状态</strong></p>
+<blockquote>
+<p>Wed Jul 25 17:36:24 GMT+08:00 2018 {10.42.85.137=250, 10.42.219.30=51, 10.42.8.173=100} </p>
+</blockquote>
+<p>&#x25B6;&nbsp;&nbsp;<strong>下达更新命令后会先删除一个节点，因为滚动更新设置了maxSurge: 1，k8s会先创建两个pod准备节点，时间是：17：41：30，容器部署完成的时间在41：43 左右，又因为设置了initialDelaySeconds: 60，所以探针的启动时间是17:42:43</strong></p>
+<blockquote>
+<p>Wed Jul 25 17:42:03 GMT+08:00 2018 {10.42.85.137=400, 10.42.8.173=350} 22S</p>
+</blockquote>
+<p>&#x25B6;&nbsp;&nbsp;<strong>readiness开始探测，下面的两条记录能够显示在readiness返回失败的情况下proxy对流量的分配情况</strong></p>
+<blockquote>
+<p>Wed Jul 25 17:42:50 GMT+08:00 2018 {10.42.85.137=600, 10.42.8.173=550} 7S<br>Wed Jul 25 17:46:16 GMT+08:00 2018 {10.42.85.137=900, 10.42.8.173=650} 8S</p>
+</blockquote>
+<p>&#x25B6;&nbsp;&nbsp;<strong>5min左右，第一个pod替换节点10.42.45.208通过readiness探测，开始提供服务</strong></p>
+<blockquote>
+<p>Wed Jul 25 17:47:16 GMT+08:00 2018 {10.42.8.173=850, 10.42.45.208=200} 10S #此处10.42.85.137节点未分到流量<br>Wed Jul 25 17:47:55 GMT+08:00 2018 {10.42.85.137=1000, 10.42.8.173=950, 10.42.45.208=400} 13S</p>
+</blockquote>
+<p>&#x25B6;&nbsp;&nbsp;<strong>第二个pod替换节点通过readiness探测，开始提供服务，并且删除10.42.8.173节点，此处开始准备第三个pod替换节点10.42.51.161</strong></p>
+<blockquote>
+<p>Wed Jul 25 17:50:01 GMT+08:00 2018 {10.42.85.137=1200, 10.42.227.241=150, 10.42.45.208=450} 16S<br>Wed Jul 25 17:51:13 GMT+08:00 2018 {10.42.85.137=1250, 10.42.227.241=300, 10.42.45.208=650} 6S<br>Wed Jul 25 17:52:11 GMT+08:00 2018 {10.42.85.137=1450, 10.42.227.241=350, 10.42.45.208=800} 8S<br>Wed Jul 25 17:54:08 GMT+08:00 2018 {10.42.85.137=1550, 10.42.227.241=400, 10.42.45.208=1050} 5S</p>
+</blockquote>
+<p>&#x25B6;&nbsp;&nbsp;<strong>5分钟左右，第三个pod替换节点通过readiness探测，开始提供服务，并删除10.42.85.137节点，至此三个节点更新完毕，无请求等待情况</strong><br>Wed Jul 25 17:55:10 GMT+08:00 2018 {10.42.51.161=200, 10.42.227.241=450, 10.42.45.208=1200} 9S</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>下面是操作过程中的截图<br><img src="/img/20180727/pod-event.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>readiness probe机制可以探测节点是否准备好接受流量，并在初始化容器的时候设置ready状态为0/1,让proxy把流量转发到其他节点，因为配置rolling update的maxUnavailable为1，此时的更新会暂停，等到节点通过readiness检测并设置ready状态为1/1时，才会继续删除下一个节点，也就是至少保证两个节点的状态是available的。probe机制配合rollin gupdate的设置让pod逐步更新，是实现不停服更新的一个可选方案。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实习的日子/" rel="tag"># 实习的日子</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/03/mybatis generator详细配置/" rel="next" title="mybatis generator详细配置">
+                <i class="fa fa-chevron-left"></i> mybatis generator详细配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/toux.png"
+                alt="wzchenxuan" />
+            
+              <p class="site-author-name" itemprop="name">wzchenxuan</p>
+              <p class="site-description motion-element" itemprop="description">总之岁月漫长，然而值得等待。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wzchenxuan" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jianshu.com/users/1d156a8bac55/timeline" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                挂一下大佬的博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leeyom.top/" title="leeyom" target="_blank">leeyom</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.yanning.wang/" title="柊" target="_blank">柊</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#滚动升级相关配置"><span class="nav-number">1.</span> <span class="nav-text">滚动升级相关配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readiness相关配置"><span class="nav-number">2.</span> <span class="nav-text">readiness相关配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试使用web项目设定"><span class="nav-number">3.</span> <span class="nav-text">测试使用web项目设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试使用脚本设定"><span class="nav-number">4.</span> <span class="nav-text">测试使用脚本设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结果分析"><span class="nav-number">5.</span> <span class="nav-text">测试结果分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wzchenxuan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

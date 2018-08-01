@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="自学啦加油," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。">
+<meta name="keywords" content="自学啦加油">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO知识点总结（一）">
+<meta property="og:url" content="http://yoursite.com/2017/05/28/IO知识点总结（一）/index.html">
+<meta property="og:site_name" content="chenxuan的个人站">
+<meta property="og:description" content="SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/20170526/Filemethod.png">
+<meta property="og:image" content="http://yoursite.com/img/20170526/guolvqi.png">
+<meta property="og:image" content="http://yoursite.com/img/20170526/Input.png">
+<meta property="og:image" content="http://yoursite.com/img/20170526/read.png">
+<meta property="og:image" content="http://yoursite.com/img/20170526/fileCopy.png">
+<meta property="og:image" content="http://yoursite.com/img/20170526/autoClose.png">
+<meta property="og:updated_time" content="2018-07-27T06:11:26.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IO知识点总结（一）">
+<meta name="twitter:description" content="SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。">
+<meta name="twitter:image" content="http://yoursite.com/img/20170526/Filemethod.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/28/IO知识点总结（一）/"/>
+
+
+
+
+
+  <title>IO知识点总结（一） | chenxuan的个人站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">chenxuan的个人站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我明白你会来，所以我等</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/28/IO知识点总结（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wzchenxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenxuan的个人站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IO知识点总结（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T00:00:00+08:00">
+                2017-05-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-27T14:11:26+08:00">
+                2018-07-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java回顾复习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java回顾复习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。</p>
+<a id="more"></a>
+<h3 id="File类是表示磁盘文件和磁盘目录的对象的路径"><a href="#File类是表示磁盘文件和磁盘目录的对象的路径" class="headerlink" title="File类是表示磁盘文件和磁盘目录的对象的路径."></a>File类是表示磁盘文件和磁盘目录的对象的路径.</h3><blockquote>
+<p><strong>注意</strong>：<br>Unix:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用”/”,来分割目录路径.使用:来分割属性.<br>Windows: &nbsp;使用”\”,来分割目录路径.使用;来分割属性.<br>但是在Java中一个”\”表示转义.在Windows平台的Java代码中表示一个路径,就得使用两个\. 但是Windows支持/.</p>
+</blockquote>
+<h4 id="File对象的常用构造方法"><a href="#File对象的常用构造方法" class="headerlink" title="File对象的常用构造方法"></a>File对象的常用构造方法</h4><p> File(String pathname) 通过将路径名字符串转换为抽象路径名来创建一个新 File 实例<br>File(File parent, String child)根据parent抽象路径名和child 路径名字符串创建一个新File实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">File f1 = new File(&quot;c:abc/123.txt&quot;);</span><br><span class="line">File f2 = new File(&quot;c:abc&quot;,&quot;123.txt&quot;);</span><br><span class="line">File dir = new File(&quot;c:abc&quot;);</span><br><span class="line">File f3= new File(dir,&quot;123.txt&quot;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="File类中方法"><a href="#File类中方法" class="headerlink" title="File类中方法"></a>File类中方法</h4><p><img src="/img/20170526/Filemethod.png" alt=""></p>
+<h4 id="文件过滤器-FilenameFilter）"><a href="#文件过滤器-FilenameFilter）" class="headerlink" title="文件过滤器(FilenameFilter）"></a>文件过滤器(FilenameFilter）</h4><p><img src="/img/20170526/guolvqi.png" alt=""></p>
+<p>贴两个小案例希望能练练手</p>
+<blockquote>
+<p>需求:&nbsp;&nbsp;列出指定目录中所有的文件,包括子文件夹中的所有文件(使用递归算法(recursion)).<br>需求:&nbsp;&nbsp;列出文件的分层结构<br>期望效果:test1&gt;day01&gt;codes&gt;classes</p>
+</blockquote>
+<h3 id="输入输出流的概述"><a href="#输入输出流的概述" class="headerlink" title="输入输出流的概述"></a>输入输出流的概述</h3><h4 id="InputStream-OutputSream"><a href="#InputStream-OutputSream" class="headerlink" title="InputStream-OutputSream"></a>InputStream-OutputSream</h4><p><img src="/img/20170526/Input.png" alt=""></p>
+<h4 id="Reader-Writer"><a href="#Reader-Writer" class="headerlink" title="Reader-Writer"></a>Reader-Writer</h4><p><img src="/img/20170526/read.png" alt=""></p>
+<h3 id="文件流概述"><a href="#文件流概述" class="headerlink" title="文件流概述"></a>文件流概述</h3><h4 id="文件字节流实现文件拷贝包括资源正确关闭的一个整合"><a href="#文件字节流实现文件拷贝包括资源正确关闭的一个整合" class="headerlink" title="文件字节流实现文件拷贝包括资源正确关闭的一个整合"></a>文件字节流实现文件拷贝包括资源正确关闭的一个整合</h4><p><img src="/img/20170526/fileCopy.png" alt=""></p>
+<h4 id="Java7开始出现的自动资源关闭"><a href="#Java7开始出现的自动资源关闭" class="headerlink" title="Java7开始出现的自动资源关闭"></a>Java7开始出现的自动资源关闭</h4><p><img src="/img/20170526/autoClose.png" alt=""><br>下面部分待我慢慢总结哈~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自学啦加油/" rel="tag"># 自学啦加油</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/15/新建博客/" rel="next" title="hexo+github博客搭建">
+                <i class="fa fa-chevron-left"></i> hexo+github博客搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/28/IO知识点总结（二）/" rel="prev" title="IO知识点总结（二）">
+                IO知识点总结（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/toux.png"
+                alt="wzchenxuan" />
+            
+              <p class="site-author-name" itemprop="name">wzchenxuan</p>
+              <p class="site-description motion-element" itemprop="description">总之岁月漫长，然而值得等待。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wzchenxuan" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jianshu.com/users/1d156a8bac55/timeline" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                挂一下大佬的博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leeyom.top/" title="leeyom" target="_blank">leeyom</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.yanning.wang/" title="柊" target="_blank">柊</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#File类是表示磁盘文件和磁盘目录的对象的路径"><span class="nav-number">1.</span> <span class="nav-text">File类是表示磁盘文件和磁盘目录的对象的路径.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File对象的常用构造方法"><span class="nav-number">1.1.</span> <span class="nav-text">File对象的常用构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#File类中方法"><span class="nav-number">1.2.</span> <span class="nav-text">File类中方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件过滤器-FilenameFilter）"><span class="nav-number">1.3.</span> <span class="nav-text">文件过滤器(FilenameFilter）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出流的概述"><span class="nav-number">2.</span> <span class="nav-text">输入输出流的概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#InputStream-OutputSream"><span class="nav-number">2.1.</span> <span class="nav-text">InputStream-OutputSream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reader-Writer"><span class="nav-number">2.2.</span> <span class="nav-text">Reader-Writer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件流概述"><span class="nav-number">3.</span> <span class="nav-text">文件流概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件字节流实现文件拷贝包括资源正确关闭的一个整合"><span class="nav-number">3.1.</span> <span class="nav-text">文件字节流实现文件拷贝包括资源正确关闭的一个整合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java7开始出现的自动资源关闭"><span class="nav-number">3.2.</span> <span class="nav-text">Java7开始出现的自动资源关闭</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wzchenxuan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
