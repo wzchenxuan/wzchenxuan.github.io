@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>hexo+github博客搭建 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github博客搭建">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/新建博客/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/20170316/gitBash.png">
+<meta property="og:image" content="http://yoursite.com/img/20170316/direction.png">
+<meta property="og:image" content="http://yoursite.com/img/20170316/initialize.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20170316/dashang.jpg">
+<meta property="og:updated_time" content="2018-07-27T06:11:24.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo+github博客搭建">
+<meta name="twitter:description" content="一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ">
+<meta name="twitter:image" content="http://yoursite.com/img/20170316/gitBash.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-新建博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/15/新建博客/" class="article-date">
+  <time datetime="2017-03-14T16:00:00.000Z" itemprop="datePublished">2017-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客搭建/">博客搭建</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo+github博客搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ </p>
+<a id="more"></a>
+<h3 id="搭建基本环境"><a href="#搭建基本环境" class="headerlink" title="搭建基本环境"></a>搭建基本环境</h3><ol>
+<li><p>node.js:hexo博客框架基于node.js。</p>
+</li>
+<li><p>git客户端:用来将hexo相关文件提交到github上去。（安装过程就不细说了，反正我是一路next过去的）。</p>
+</li>
+</ol>
+<h3 id="搭建hexo基本框架"><a href="#搭建hexo基本框架" class="headerlink" title="搭建hexo基本框架"></a>搭建hexo基本框架</h3><p>mark下几个hexo常用的命令吧,//后面为注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g //完整命令为hexo generate,用于生成静态文件</span><br><span class="line">hexo s //完整命令为hexo server,用于启动服务器，主要用来本地预览</span><br><span class="line">hexo d //完整命令为hexo deploy,用于将本地文件发布到github上</span><br><span class="line">hexo n //完整命令为hexo new,用于新建一篇文章</span><br></pre></td></tr></table></figure></p>
+<p>利用 npm 命令即可安装。在任意位置点击鼠标右键，选择Git Bash</p>
+<p><img src="/img/20170316/gitBash.png" alt=""></p>
+<p>输入安装hexo命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h3 id="初始化博客框架"><a href="#初始化博客框架" class="headerlink" title="初始化博客框架"></a>初始化博客框架</h3><p>  创建hexo目录，在文件夹目录内执行下述指令，以下的操作指令默认都在文件夹中进行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>下面是各个文件夹的作用的注释，各位可以参考一下</p>
+<p><img src="/img/20170316/direction.png" alt=""></p>
+<ul>
+<li>_config.yml：用来配置站点信息，大多数配置都在这里进行。</li>
+<li>package.json：管理我们安装的一些插件，我们要删除某些插件的时候，可以在这里进行。</li>
+<li>scaffolds：模板文件夹。</li>
+<li>source：源文件夹是存放用户资源的地方,他下面有一个- </li>
+<li>_posts，文件夹，我们发表的文件就存放在这个文件夹下。</li>
+<li>themes：主题文件夹，Hexo 会根据主题来生成静态页面。</li>
+</ul>
+<blockquote>
+<p>该描述摘自<a href="http://leeyom.top/2016/09/25/hexo-github/#more" target="_blank" rel="noopener">某位大佬的小站</a></p>
+</blockquote>
+<p>3.<strong>安装依赖包：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>4.<strong>本地测试</strong></p>
+<p>在文件夹目录下分别执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>然后用浏览器访问<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，能看到一个丑陋的hexo初始化界面，大概就是这样子的吧。</p>
+<p><img src="/img/20170316/initialize.jpg" alt=""></p>
+<p>不要在意这些细节啦，反正别人都还看不到。</p>
+<p>然后就是创建github仓库，配置ssh密匙之类，也不细说了，下面会挂出教程地址。</p>
+<p>还有就是改配置文件的时候小心别改错了就行啦，也不要顺手加几个空格之类的..还是得严格按照格式来改</p>
+<p>写不动了，行吧，我短就短吧。</p>
+<p>贴一个傻瓜式教程的博客地址,大家有空的时候可以自己做一下，有问题的话..我估计大概可能应该我能帮上忙吧。</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/0a3cad3e8cdf" target="_blank" rel="noopener">hexo+github搭建博客详细操作</a></p>
+</blockquote>
+<p>里面也是讲的挺详细的</p>
+<p>还有博客的主题和一些评论小功能之类小功能..</p>
+<p>等下次啥时候有空再扯一篇文章出来吧，表打我ヽ(✿ﾟ▽ﾟ)ノ 我尽力了。</p>
+<p>话说   那个。。让我不要脸的开启一下打赏功能</p>
+<p><img src="/img/20170316/dashang.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/15/新建博客/" data-id="cjkasr35i000a14ued02yrug0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/28/IO知识点总结（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IO知识点总结（一）
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java回顾复习/">Java回顾复习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/来聊聊天吧/">来聊聊天吧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018杂谈/">2018杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不知道说些什么好/">不知道说些什么好</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实习的日子/">实习的日子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自学啦加油/">自学啦加油</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2018杂谈/" style="font-size: 10px;">2018杂谈</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/不知道说些什么好/" style="font-size: 10px;">不知道说些什么好</a> <a href="/tags/实习的日子/" style="font-size: 10px;">实习的日子</a> <a href="/tags/自学啦加油/" style="font-size: 20px;">自学啦加油</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/27/kubernates探针机制测试报告/">kubernates探针机制测试报告</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/mybatis generator详细配置/">mybatis generator详细配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/新的一年，尝试挑战舒适区/">新的一年，尝试挑战舒适区</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/11/近期的一些感受/">说一说近期的感受吧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/28/IO知识点总结（三）/">IO知识点总结（三）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

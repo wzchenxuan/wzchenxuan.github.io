@@ -62,12 +62,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kubernates探针机制测试报告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/31/hello-world/" class="article-date">
-  <time datetime="2018-07-31T15:16:17.201Z" itemprop="datePublished">2018-07-31</time>
+    <a href="/2018/07/27/kubernates探针机制测试报告/" class="article-date">
+  <time datetime="2018-07-26T16:00:00.000Z" itemprop="datePublished">2018-07-27</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/运维/">运维</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -76,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/31/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/07/27/kubernates探针机制测试报告/">kubernates探针机制测试报告</a>
     </h1>
   
 
@@ -84,22 +88,351 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <blockquote>
+<p>kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/2018/07/27/kubernates探针机制测试报告/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/31/hello-world/" data-id="cjkary2ex0000z8ue8x4rb90s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/27/kubernates探针机制测试报告/" data-id="cjkasr35c000514uee3ailq2f" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习的日子/">实习的日子</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mybatis generator详细配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/03/mybatis generator详细配置/" class="article-date">
+  <time datetime="2018-07-02T16:00:00.000Z" itemprop="datePublished">2018-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/03/mybatis generator详细配置/">mybatis generator详细配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis Generator（MBG）是MyBatis的子项目之一，用于自动化创建简单的CURD组件，减少重复性编码工作。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/07/03/mybatis generator详细配置/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/03/mybatis generator详细配置/" data-id="cjkasr35d000614uegts9ynhw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis/">mybatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-新的一年，尝试挑战舒适区" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/03/新的一年，尝试挑战舒适区/" class="article-date">
+  <time datetime="2018-07-02T16:00:00.000Z" itemprop="datePublished">2018-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/来聊聊天吧/">来聊聊天吧</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/03/新的一年，尝试挑战舒适区/">新的一年，尝试挑战舒适区</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>更新的又不是技术文章~大半年来都是自己在瞎看，感觉完全跟不上自己计划的进度啊喂!!!∑(ﾟДﾟノ)ノ，新的一年还是得静下来给自己定一些小计划。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/07/03/新的一年，尝试挑战舒适区/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/03/新的一年，尝试挑战舒适区/" data-id="cjkasr35q000g14uejlg8in5c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2018杂谈/">2018杂谈</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-近期的一些感受" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/11/近期的一些感受/" class="article-date">
+  <time datetime="2018-02-10T16:00:00.000Z" itemprop="datePublished">2018-02-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/来聊聊天吧/">来聊聊天吧</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/11/近期的一些感受/">说一说近期的感受吧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开学都快一个月了，想了想博客已经好久没更新了，不知道怎么说，这段时间吧，想了很多，消极的话这里也不说了，希望大家的学习都能有所进步吧。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/02/11/近期的一些感受/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/11/近期的一些感受/" data-id="cjkasr35k000b14uelgytoick" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不知道说些什么好/">不知道说些什么好</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IO知识点总结（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/28/IO知识点总结（三）/" class="article-date">
+  <time datetime="2017-09-27T16:00:00.000Z" itemprop="datePublished">2017-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java回顾复习/">Java回顾复习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/IO知识点总结（三）/">IO知识点总结（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最后的一部分总结一下吧，期末都快结束了，大一也就这么过去了，能力似乎也没有什么提升，代码写的少是硬伤，希望暑假自己能坚持自学下去吧，加油啦。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/28/IO知识点总结（三）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/28/IO知识点总结（三）/" data-id="cjkasr353000114ueovdst6pw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自学啦加油/">自学啦加油</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IO知识点总结（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/28/IO知识点总结（二）/" class="article-date">
+  <time datetime="2017-09-27T16:00:00.000Z" itemprop="datePublished">2017-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java回顾复习/">Java回顾复习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/IO知识点总结（二）/">IO知识点总结（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上部分总结了File类部分，以及文件流部分的字节输入/输出流，这一部分打算将剩下来的数组流、转换流、打印流等做一个总结，希望能帮助到大家自学或者复习 - (゜-゜)つロ 干杯~</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/28/IO知识点总结（二）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/28/IO知识点总结（二）/" data-id="cjkasr35a000414ueqrq9jz0t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自学啦加油/">自学啦加油</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IO知识点总结（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/28/IO知识点总结（一）/" class="article-date">
+  <time datetime="2017-05-27T16:00:00.000Z" itemprop="datePublished">2017-05-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java回顾复习/">Java回顾复习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/28/IO知识点总结（一）/">IO知识点总结（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/28/IO知识点总结（一）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/28/IO知识点总结（一）/" data-id="cjkasr34r000014ueh7plusxr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自学啦加油/">自学啦加油</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-新建博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/15/新建博客/" class="article-date">
+  <time datetime="2017-03-14T16:00:00.000Z" itemprop="datePublished">2017-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客搭建/">博客搭建</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/15/新建博客/">hexo+github博客搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ </p>
+        
+          <p class="article-more-link">
+            <a href="/2017/03/15/新建博客/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/15/新建博客/" data-id="cjkasr35i000a14ued02yrug0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
     </footer>
   </div>
   
@@ -114,18 +447,39 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java回顾复习/">Java回顾复习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客搭建/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/来聊聊天吧/">来聊聊天吧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2018杂谈/">2018杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不知道说些什么好/">不知道说些什么好</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实习的日子/">实习的日子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自学啦加油/">自学啦加油</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2018杂谈/" style="font-size: 10px;">2018杂谈</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/不知道说些什么好/" style="font-size: 10px;">不知道说些什么好</a> <a href="/tags/实习的日子/" style="font-size: 10px;">实习的日子</a> <a href="/tags/自学啦加油/" style="font-size: 20px;">自学啦加油</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -138,7 +492,23 @@
       <ul>
         
           <li>
-            <a href="/2018/07/31/hello-world/">Hello World</a>
+            <a href="/2018/07/27/kubernates探针机制测试报告/">kubernates探针机制测试报告</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/mybatis generator详细配置/">mybatis generator详细配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/新的一年，尝试挑战舒适区/">新的一年，尝试挑战舒适区</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/11/近期的一些感受/">说一说近期的感受吧</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/28/IO知识点总结（三）/">IO知识点总结（三）</a>
           </li>
         
       </ul>
