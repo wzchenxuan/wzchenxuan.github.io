@@ -56,10 +56,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -88,7 +88,7 @@
 <meta property="og:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/20180727/pod-event.png">
-<meta property="og:updated_time" content="2018-07-27T09:50:25.740Z">
+<meta property="og:updated_time" content="2018-08-02T06:50:33.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernates探针机制测试报告">
 <meta name="twitter:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-27T17:50:25+08:00">
-                2018-07-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T14:50:33+08:00">
+                2018-08-02
               </time>
             
           </span>
@@ -358,9 +358,7 @@
       
 
       
-        <blockquote>
-<p>kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1</p>
-</blockquote>
+        <p>kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1</p>
 <a id="more"></a>
 <h3 id="滚动升级相关配置"><a href="#滚动升级相关配置" class="headerlink" title="滚动升级相关配置"></a>滚动升级相关配置</h3><p>设定pod节点为3，滚动升级间隔为120s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">replicas: 3</span><br><span class="line"> minReadySeconds: 120 </span><br><span class="line"> strategy:</span><br><span class="line">   rollingUpdate: </span><br><span class="line">     maxSurge: 1   #设定最大波动值由于replicas为3,则整个升级,pod个数在2-4个之间</span><br><span class="line">     maxUnavailable: 1 #滚动升级时允许的最大Unavailable的pod个数</span><br></pre></td></tr></table></figure></p>
 <h3 id="readiness相关配置"><a href="#readiness相关配置" class="headerlink" title="readiness相关配置"></a>readiness相关配置</h3><p>设定第一次启动延迟1min，二次探测时间间隔为15s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">readinessProbe:</span><br><span class="line">  httpGet:</span><br><span class="line">    path: /ssh_demo-0.0.1-SNAPSHOT/Readiness.do</span><br><span class="line">    port: 8080</span><br><span class="line">    httpHeaders:</span><br><span class="line">    - name: X-Custom-Header</span><br><span class="line">      value: Awesome</span><br><span class="line">  initialDelaySeconds: 60</span><br><span class="line">  periodSeconds: 15</span><br></pre></td></tr></table></figure></p>
@@ -420,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/03/新的一年，尝试挑战舒适区/" rel="next" title="新的一年，尝试挑战舒适区">
-                <i class="fa fa-chevron-left"></i> 新的一年，尝试挑战舒适区
+              <a href="/2018/07/03/mybatis generator详细配置/" rel="next" title="mybatis generator详细配置">
+                <i class="fa fa-chevron-left"></i> mybatis generator详细配置
               </a>
             
           </div>
