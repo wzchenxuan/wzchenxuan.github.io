@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="chenxuan的个人站">
 <meta property="og:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png?Expires=1533609827&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=MIqCKPFUQ6TKoTDDmVLB1aMe0cQ%3D">
-<meta property="og:updated_time" content="2018-08-07T01:44:03.693Z">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png">
+<meta property="og:updated_time" content="2018-08-08T01:09:03.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernates探针机制测试报告">
 <meta name="twitter:description" content="kubernetes在更新节点的时候可以配置rolling update滚动升级机制，但是从部署完成到容器中的服务完全启动还有几分钟的等待时间，如果开放服务的情况下，服务便会中断，这里使用readiness probe可以请求接口，可以探测容器在running的情况下服务是否准备就绪，在配置了readiness探针的情况下，探针未启动时容器的ready状态为0/1">
-<meta name="twitter:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png?Expires=1533609827&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=MIqCKPFUQ6TKoTDDmVLB1aMe0cQ%3D">
+<meta name="twitter:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png">
 
 
 
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-07T09:44:03+08:00">
-                2018-08-07
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-08T09:09:03+08:00">
+                2018-08-08
               </time>
             
           </span>
@@ -386,7 +386,7 @@
 <p>Wed Jul 25 17:50:01 GMT+08:00 2018 {10.42.85.137=1200, 10.42.227.241=150, 10.42.45.208=450} 16S<br>Wed Jul 25 17:51:13 GMT+08:00 2018 {10.42.85.137=1250, 10.42.227.241=300, 10.42.45.208=650} 6S<br>Wed Jul 25 17:52:11 GMT+08:00 2018 {10.42.85.137=1450, 10.42.227.241=350, 10.42.45.208=800} 8S<br>Wed Jul 25 17:54:08 GMT+08:00 2018 {10.42.85.137=1550, 10.42.227.241=400, 10.42.45.208=1050} 5S</p>
 </blockquote>
 <p>&#x25B6;&nbsp;&nbsp;<strong>5分钟左右，第三个pod替换节点通过readiness探测，开始提供服务，并删除10.42.85.137节点，至此三个节点更新完毕，无请求等待情况</strong><br>Wed Jul 25 17:55:10 GMT+08:00 2018 {10.42.51.161=200, 10.42.227.241=450, 10.42.45.208=1200} 9S</p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>下面是操作过程中的截图<br><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png?Expires=1533609827&amp;OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&amp;Signature=MIqCKPFUQ6TKoTDDmVLB1aMe0cQ%3D" alt=""></p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>下面是操作过程中的截图<br><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/pod-event.png" alt=""></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>readiness probe机制可以探测节点是否准备好接受流量，并在初始化容器的时候设置ready状态为0/1,让proxy把流量转发到其他节点，因为配置rolling update的maxUnavailable为1，此时的更新会暂停，等到节点通过readiness检测并设置ready状态为1/1时，才会继续删除下一个节点，也就是至少保证两个节点的状态是available的。probe机制配合rollin gupdate的设置让pod逐步更新，是实现不停服更新的一个可选方案。</p>
 
       
