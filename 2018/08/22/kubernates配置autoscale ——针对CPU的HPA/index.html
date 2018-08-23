@@ -82,14 +82,14 @@
 <meta name="description" content="Kubernetes HPA(Horizontal Pod Autoscaling)Pod水平自动伸缩，HPA通过控制循环实现水平自动伸缩，其周期由控制器管理器的–horizontal-pod-autoscaler-sync-period标志控制（默认值为30秒）。在每个期间，控制器管理器根据每个HPA定义中指定的度量标准查询资源利用率。控制器管理器从resource metrics API（针">
 <meta name="keywords" content="实习的日子">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubernates配置autoscale --针对CPU的HPA">
-<meta property="og:url" content="http://yoursite.com/2018/08/22/kubernates配置autoscale--针对CPU的HPA/index.html">
+<meta property="og:title" content="kubernates配置autoscale ——针对CPU的HPA">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/kubernates配置autoscale ——针对CPU的HPA/index.html">
 <meta property="og:site_name" content="chenxuan的个人站">
 <meta property="og:description" content="Kubernetes HPA(Horizontal Pod Autoscaling)Pod水平自动伸缩，HPA通过控制循环实现水平自动伸缩，其周期由控制器管理器的–horizontal-pod-autoscaler-sync-period标志控制（默认值为30秒）。在每个期间，控制器管理器根据每个HPA定义中指定的度量标准查询资源利用率。控制器管理器从resource metrics API（针">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T09:51:27.496Z">
+<meta property="og:updated_time" content="2018-08-23T02:38:46.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kubernates配置autoscale --针对CPU的HPA">
+<meta name="twitter:title" content="kubernates配置autoscale ——针对CPU的HPA">
 <meta name="twitter:description" content="Kubernetes HPA(Horizontal Pod Autoscaling)Pod水平自动伸缩，HPA通过控制循环实现水平自动伸缩，其周期由控制器管理器的–horizontal-pod-autoscaler-sync-period标志控制（默认值为30秒）。在每个期间，控制器管理器根据每个HPA定义中指定的度量标准查询资源利用率。控制器管理器从resource metrics API（针">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/22/kubernates配置autoscale--针对CPU的HPA/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/kubernates配置autoscale ——针对CPU的HPA/"/>
 
 
 
 
 
-  <title>kubernates配置autoscale --针对CPU的HPA | chenxuan的个人站</title>
+  <title>kubernates配置autoscale ——针对CPU的HPA | chenxuan的个人站</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/kubernates配置autoscale--针对CPU的HPA/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/kubernates配置autoscale ——针对CPU的HPA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wzchenxuan">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kubernates配置autoscale --针对CPU的HPA</h1>
+          <h1 class="post-title" itemprop="name headline">kubernates配置autoscale ——针对CPU的HPA</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-22T17:51:27+08:00">
-                2018-08-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-23T10:38:46+08:00">
+                2018-08-23
               </time>
             
           </span>
@@ -358,11 +358,12 @@
       
         <p> Kubernetes HPA(Horizontal Pod Autoscaling)Pod水平自动伸缩，HPA通过控制循环实现水平自动伸缩，其周期由控制器管理器的–horizontal-pod-autoscaler-sync-period标志控制（默认值为30秒）。在每个期间，控制器管理器根据每个HPA定义中指定的度量标准查询资源利用率。控制器管理器从resource metrics API（针对每个pod的资源指标）或 custom metrics API（针对所有其他指标）获取指标。</p>
 <a id="more"></a>
-<h1 id="HPA的概况"><a href="#HPA的概况" class="headerlink" title="HPA的概况"></a>HPA的概况</h1><p>摘自 <a href="https://v1-7.docs.kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">k8s官方文档 -v 1.7</a>，因测试环境为v1.7,所以在这里做基于CPU的HPA实验,<strong>实验中的Resource Metrics API由heapster提供支持</strong></p>
+<h1 id="HPA的概况"><a href="#HPA的概况" class="headerlink" title="HPA的概况"></a>HPA的概况</h1><p>以下摘自 <a href="https://v1-7.docs.kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">k8s官方文档 -v 1.7</a></p>
 <blockquote>
 <p>Horizontal Pod Autoscaler 是 kubernetes 的 autoscaling API 组中的 API 资源。当前的稳定版本中，只支持 CPU 自动扩缩容，可以在 autoscaling/v1 API 版本中找到。在 alpha 版本中支持根据内存和自定义 metric 自动扩缩容，可以在 autoscaling/v2alpha1 中找到。</p>
 </blockquote>
-<p>值得注意的是，在官网的v1.11版的文档中写到：</p>
+<p>因测试环境为v1.7,所以在这里做基于CPU的HPA实验，<strong>实验中的Resource Metrics API由heapster提供支持</strong></p>
+<p>值得注意的是，在<a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">官网v1.11版文档</a>中写到：</p>
 <blockquote>
 <p>从Kubernetes 1.11开始，<strong>不推荐</strong>从Heapster获取指标。</p>
 </blockquote>
@@ -380,8 +381,14 @@
 <blockquote>
 <p>TargetNumOfPods = ceil(sum(CurrentPodsCPUUtilization) / Target) &nbsp;&nbsp;—— <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md#autoscaling-algorithm" target="_blank" rel="noopener">由kubernetes/community提供 </a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=intern get hpa</span><br><span class="line">NAME       REFERENCE             TARGETS     MINPODS   MAXPODS   REPLICAS   AGE</span><br><span class="line">webapp01   Deployment/webapp01   63% / 20%   1         5         4          25m</span><br></pre></td></tr></table></figure>
-<h2 id="通过yaml文件创建资源对象"><a href="#通过yaml文件创建资源对象" class="headerlink" title="通过yaml文件创建资源对象"></a>通过yaml文件创建资源对象</h2><p>使用yaml创建，创建相同HorizontalPodAutoscaler资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: autoscaling/v1</span><br><span class="line">kind: HorizontalPodAutoscaler</span><br><span class="line">metadata:</span><br><span class="line">  name: webapp01</span><br><span class="line">spec:</span><br><span class="line">  scaleTargetRef:</span><br><span class="line">    apiVersion: v1</span><br><span class="line">    kind: Deployment</span><br><span class="line">    name: webapp01</span><br><span class="line">  minReplicas: 1</span><br><span class="line">  maxReplicas: 5</span><br><span class="line">  targetCPUUtilizationPercentage: 20</span><br></pre></td></tr></table></figure></p>
+<p>hpa状态的刷新时间为一分钟，在此基础上自动伸缩副本的默认时间为30s，<del>另外在每一次作出决策后的一段时间内，将不再进行扩展决策。对于ScaleUp而言，这个时间段为3分钟，Scaledown为5分钟。</del>（待验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=intern get hpa</span><br><span class="line">NAME       REFERENCE             TARGETS     MINPODS   MAXPODS   REPLICAS   AGE</span><br><span class="line">webapp01   Deployment/webapp01   63% / 20%   1         5         4          25m</span><br></pre></td></tr></table></figure></p>
+<h2 id="通过yaml文件创建资源对象"><a href="#通过yaml文件创建资源对象" class="headerlink" title="通过yaml文件创建资源对象"></a>通过yaml文件创建资源对象</h2><p>使用yaml创建，创建相同HPA资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: autoscaling/v1</span><br><span class="line">kind: HorizontalPodAutoscaler</span><br><span class="line">metadata:</span><br><span class="line">  name: webapp01</span><br><span class="line">spec:</span><br><span class="line">  scaleTargetRef:</span><br><span class="line">    apiVersion: v1</span><br><span class="line">    kind: Deployment</span><br><span class="line">    name: webapp01</span><br><span class="line">  minReplicas: 1</span><br><span class="line">  maxReplicas: 5</span><br><span class="line">  targetCPUUtilizationPercentage: 20</span><br></pre></td></tr></table></figure></p>
+<h2 id="多个指标和自定义指标"><a href="#多个指标和自定义指标" class="headerlink" title="多个指标和自定义指标"></a>多个指标和自定义指标</h2><p>在v2alpha1版本的api里还有两种其他类型的指标：pod metrics和 object metrics，这两种指标都被视为 custom metrics</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type: Object</span><br><span class="line">object:</span><br><span class="line">  metricName: requests-per-second</span><br><span class="line">  target:</span><br><span class="line">    apiVersion: extensions/v1beta1</span><br><span class="line">    kind: Ingress</span><br><span class="line">    name: main-route</span><br><span class="line">  targetValue: 2k</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果您提供多个此类度量标准块，Horizo​​ntalPodAutoscaler将依次考虑每个度量标准。Horizo​​ntalPodAutoscaler将计算每个度量标准的建议副本计数，然后选择具有最高副本计数的那个。 —— 摘自 <a href="https://v1-7.docs.kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/" target="_blank" rel="noopener">v1.7官方文档</a></p>
+</blockquote>
+<p>官方例子如下，HPA尝试保持每个pod占用其设定的CPU的大约50％，每秒服务1000个数据包，并且在主路由下的所有pod每秒服务总共10000个请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: autoscaling/v2alpha1</span><br><span class="line">kind: HorizontalPodAutoscaler</span><br><span class="line">metadata:</span><br><span class="line">  name: php-apache</span><br><span class="line">  namespace: default</span><br><span class="line">spec:</span><br><span class="line">  scaleTargetRef:</span><br><span class="line">    apiVersion: apps/v1beta1</span><br><span class="line">    kind: Deployment</span><br><span class="line">    name: php-apache</span><br><span class="line">  minReplicas: 1</span><br><span class="line">  maxReplicas: 10</span><br><span class="line">  metrics:</span><br><span class="line">  - type: Resource</span><br><span class="line">    resource:</span><br><span class="line">      name: cpu</span><br><span class="line">      targetAverageUtilization: 50</span><br><span class="line">  - type: Pods</span><br><span class="line">    pods:</span><br><span class="line">      metricName: packets-per-second</span><br><span class="line">      targetAverageValue: 1k</span><br><span class="line">  - type: Object</span><br><span class="line">    object:</span><br><span class="line">      metricName: requests-per-second</span><br><span class="line">      target:</span><br><span class="line">        apiVersion: extensions/v1beta1</span><br><span class="line">        kind: Ingress</span><br><span class="line">        name: main-route</span><br><span class="line">      targetValue: 10k</span><br><span class="line">status:</span><br><span class="line">  observedGeneration: 1</span><br><span class="line">  lastScaleTime: &lt;some-time&gt;</span><br><span class="line">  currentReplicas: 1</span><br><span class="line">  desiredReplicas: 1</span><br><span class="line">  currentMetrics:</span><br><span class="line">  - type: Resource</span><br><span class="line">    resource:</span><br><span class="line">      name: cpu</span><br><span class="line">      currentAverageUtilization: 0</span><br><span class="line">      currentAverageValue: 0</span><br></pre></td></tr></table></figure></p>
 <h1 id="附录-——HPA的发展历史（待完善"><a href="#附录-——HPA的发展历史（待完善" class="headerlink" title="附录 ——HPA的发展历史（待完善"></a>附录 ——HPA的发展历史（待完善</h1><ol>
 <li>在Kubernetes v1.1中首次引入了hpa特性。hpa第一个版本基于观察到的CPU利用率，后续版本支持基于内存使用。</li>
 <li>在Kubernetes v1.6中引入了一个新的API自定义指标API，它允许HPA访问任意指标。</li>
@@ -595,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HPA的概况"><span class="nav-number">1.</span> <span class="nav-text">HPA的概况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建HPA资源"><span class="nav-number">2.</span> <span class="nav-text">创建HPA资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用命令创建资源对象"><span class="nav-number">2.1.</span> <span class="nav-text">使用命令创建资源对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过yaml文件创建资源对象"><span class="nav-number">2.2.</span> <span class="nav-text">通过yaml文件创建资源对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录-——HPA的发展历史（待完善"><span class="nav-number">3.</span> <span class="nav-text">附录 ——HPA的发展历史（待完善</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HPA的概况"><span class="nav-number">1.</span> <span class="nav-text">HPA的概况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建HPA资源"><span class="nav-number">2.</span> <span class="nav-text">创建HPA资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用命令创建资源对象"><span class="nav-number">2.1.</span> <span class="nav-text">使用命令创建资源对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过yaml文件创建资源对象"><span class="nav-number">2.2.</span> <span class="nav-text">通过yaml文件创建资源对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个指标和自定义指标"><span class="nav-number">2.3.</span> <span class="nav-text">多个指标和自定义指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录-——HPA的发展历史（待完善"><span class="nav-number">3.</span> <span class="nav-text">附录 ——HPA的发展历史（待完善</span></a></li></ol></div>
             
 
           </div>
