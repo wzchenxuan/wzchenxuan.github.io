@@ -87,17 +87,17 @@
 <meta property="og:site_name" content="chenxuan的个人站">
 <meta property="og:description" content="上部分总结了File类部分，以及文件流部分的字节输入/输出流，这一部分打算将剩下来的数组流、转换流、打印流等做一个总结，希望能帮助到大家自学或者复习 - (゜-゜)つロ 干杯~">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/20170605/flush.png">
-<meta property="og:image" content="http://yoursite.com/img/20170605/Writer_Reader.png">
-<meta property="og:image" content="http://yoursite.com/img/20170605/compare.png">
-<meta property="og:image" content="http://yoursite.com/img/20170605/InputStreamReader_OutputStreamReader.png">
-<meta property="og:image" content="http://yoursite.com/img/20170605/ByteArrayDemo.png">
-<meta property="og:image" content="http://yoursite.com/img/20170605/memory.png">
-<meta property="og:updated_time" content="2018-08-07T02:15:04.997Z">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/flush.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/Writer_Reader.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/compare.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/InputStreamReader_OutputStreamReader.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/ByteArrayDemo.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/memory.png">
+<meta property="og:updated_time" content="2018-11-20T06:53:35.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IO知识点总结（二）">
 <meta name="twitter:description" content="上部分总结了File类部分，以及文件流部分的字节输入/输出流，这一部分打算将剩下来的数组流、转换流、打印流等做一个总结，希望能帮助到大家自学或者复习 - (゜-゜)つロ 干杯~">
-<meta name="twitter:image" content="http://yoursite.com/img/20170605/flush.png">
+<meta name="twitter:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/flush.png">
 
 
 
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-07T10:15:04+08:00">
-                2018-08-07
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T14:53:35+08:00">
+                2018-11-20
               </time>
             
           </span>
@@ -369,15 +369,15 @@
 <blockquote>
 <p>案例1:&nbsp;<strong>文件拷贝案例-拷贝指定目录的指定类型文件到指定目录.</strong><br>分析:&nbsp;比如把C:/java目录中所有的java文件拷贝到D:/text/把拷贝的所有文件的拓展名改为.txt.<br>案例2:&nbsp;<strong>获取进程数据-编译和运行Java代码.</strong></p>
 </blockquote>
-<p><strong>小提示</strong><br><img src="/img/20170605/flush.png" alt=""></p>
-<h3 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h3><h4 id="文件字符流实现文件复制的实现"><a href="#文件字符流实现文件复制的实现" class="headerlink" title="文件字符流实现文件复制的实现"></a>文件字符流实现文件复制的实现</h4><p><img src="/img/20170605/Writer_Reader.png" alt=""></p>
+<p><strong>小提示</strong><br><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/flush.png" alt=""></p>
+<h3 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h3><h4 id="文件字符流实现文件复制的实现"><a href="#文件字符流实现文件复制的实现" class="headerlink" title="文件字符流实现文件复制的实现"></a>文件字符流实现文件复制的实现</h4><p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/Writer_Reader.png" alt=""></p>
 <h3 id="包装流和缓冲流"><a href="#包装流和缓冲流" class="headerlink" title="包装流和缓冲流"></a>包装流和缓冲流</h3><blockquote>
 <p>SUN公司提供的默认缓存区大小是8192(1024*8),我们一般不用修改大小。</p>
 </blockquote>
-<h4 id="节点流和缓冲流性能对比"><a href="#节点流和缓冲流性能对比" class="headerlink" title="节点流和缓冲流性能对比"></a>节点流和缓冲流性能对比</h4><p><img src="/img/20170605/compare.png" alt=""></p>
-<h3 id="转换流以及内存流"><a href="#转换流以及内存流" class="headerlink" title="转换流以及内存流"></a>转换流以及内存流</h3><h4 id="转化流小实例"><a href="#转化流小实例" class="headerlink" title="转化流小实例"></a>转化流小实例</h4><p><img src="/img/20170605/InputStreamReader_OutputStreamReader.png" alt=""></p>
-<h4 id="在这里就只放出字节数组的内存流实例了（其他类型类似）"><a href="#在这里就只放出字节数组的内存流实例了（其他类型类似）" class="headerlink" title="在这里就只放出字节数组的内存流实例了（其他类型类似）"></a>在这里就只放出字节数组的内存流实例了（其他类型类似）</h4><p><img src="/img/20170605/ByteArrayDemo.png" alt=""></p>
-<h3 id="合并流"><a href="#合并流" class="headerlink" title="合并流"></a>合并流</h3><p><img src="/img/20170605/memory.png" alt=""></p>
+<h4 id="节点流和缓冲流性能对比"><a href="#节点流和缓冲流性能对比" class="headerlink" title="节点流和缓冲流性能对比"></a>节点流和缓冲流性能对比</h4><p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/compare.png" alt=""></p>
+<h3 id="转换流以及内存流"><a href="#转换流以及内存流" class="headerlink" title="转换流以及内存流"></a>转换流以及内存流</h3><h4 id="转化流小实例"><a href="#转化流小实例" class="headerlink" title="转化流小实例"></a>转化流小实例</h4><p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/InputStreamReader_OutputStreamReader.png" alt=""></p>
+<h4 id="在这里就只放出字节数组的内存流实例了（其他类型类似）"><a href="#在这里就只放出字节数组的内存流实例了（其他类型类似）" class="headerlink" title="在这里就只放出字节数组的内存流实例了（其他类型类似）"></a>在这里就只放出字节数组的内存流实例了（其他类型类似）</h4><p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/ByteArrayDemo.png" alt=""></p>
+<h3 id="合并流"><a href="#合并流" class="headerlink" title="合并流"></a>合并流</h3><p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/memory.png" alt=""></p>
 <p>还有各种流，待补充吧 = = </p>
 
       

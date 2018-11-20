@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="chenxuan的个人站">
 <meta property="og:description" content="一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png?Expires=1533611562&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=LByI4YrHW0T10ESOw5%2FnzTTLPHI%3D">
-<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/direction.png?Expires=1533611588&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=XX7jV4XJ9ZGDNkgYXyQYgcwCXqs%3D">
-<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/initialize.jpg?Expires=1533611691&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=ME45yjlf6EbPZOCm%2FHeMRm8KjPM%3D">
-<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/dashang.jpg?Expires=1533611628&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=uA6qNNKwHuBaDUpMUFOTgMoVdTg%3D">
-<meta property="og:updated_time" content="2018-08-07T02:14:59.762Z">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/direction.png">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/initialize.jpg">
+<meta property="og:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/dashang.jpg">
+<meta property="og:updated_time" content="2018-11-20T07:02:12.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github博客搭建">
 <meta name="twitter:description" content="一万年没更新文章了，手写一篇搭建此博客过程的文章吧，希望能有帮助到大家的地方（在下还是菜鸡一只，主要还是参考了各位大佬们博客里的教程，下面部分也会挂一下大佬的博客） (づ′▽`)づ">
-<meta name="twitter:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png?Expires=1533611562&OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&Signature=LByI4YrHW0T10ESOw5%2FnzTTLPHI%3D">
+<meta name="twitter:image" content="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png">
 
 
 
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-07T10:14:59+08:00">
-                2018-08-07
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T15:02:12+08:00">
+                2018-11-20
               </time>
             
           </span>
@@ -371,13 +371,13 @@
 </ol>
 <h3 id="搭建hexo基本框架"><a href="#搭建hexo基本框架" class="headerlink" title="搭建hexo基本框架"></a>搭建hexo基本框架</h3><p>mark下几个hexo常用的命令吧,//后面为注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g //完整命令为hexo generate,用于生成静态文件</span><br><span class="line">hexo s //完整命令为hexo server,用于启动服务器，主要用来本地预览</span><br><span class="line">hexo d //完整命令为hexo deploy,用于将本地文件发布到github上</span><br><span class="line">hexo n //完整命令为hexo new,用于新建一篇文章</span><br></pre></td></tr></table></figure></p>
 <p>利用 npm 命令即可安装。在任意位置点击鼠标右键，选择Git Bash</p>
-<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png?Expires=1533611562&amp;OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&amp;Signature=LByI4YrHW0T10ESOw5%2FnzTTLPHI%3D" alt=""></p>
+<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/gitBash.png" alt=""></p>
 <p>输入安装hexo命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 <h3 id="初始化博客框架"><a href="#初始化博客框架" class="headerlink" title="初始化博客框架"></a>初始化博客框架</h3><p>  创建hexo目录，在文件夹目录内执行下述指令，以下的操作指令默认都在文件夹中进行。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 <p>下面是各个文件夹的作用的注释，各位可以参考一下</p>
-<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/direction.png?Expires=1533611588&amp;OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&amp;Signature=XX7jV4XJ9ZGDNkgYXyQYgcwCXqs%3D" alt=""></p>
+<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/direction.png" alt=""></p>
 <ul>
 <li>_config.yml：用来配置站点信息，大多数配置都在这里进行。</li>
 <li>package.json：管理我们安装的一些插件，我们要删除某些插件的时候，可以在这里进行。</li>
@@ -395,7 +395,7 @@
 <p>在文件夹目录下分别执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>然后用浏览器访问<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，能看到一个丑陋的hexo初始化界面，大概就是这样子的吧。</p>
-<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/initialize.jpg?Expires=1533611691&amp;OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&amp;Signature=ME45yjlf6EbPZOCm%2FHeMRm8KjPM%3D" alt=""></p>
+<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/initialize.jpg" alt=""></p>
 <p>不要在意这些细节啦，反正别人都还看不到。</p>
 <p>然后就是创建github仓库，配置ssh密匙之类，也不细说了，下面会挂出教程地址。</p>
 <p>还有就是改配置文件的时候小心别改错了就行啦，也不要顺手加几个空格之类的..还是得严格按照格式来改</p>
@@ -408,7 +408,7 @@
 <p>还有博客的主题和一些评论小功能之类小功能..</p>
 <p>等下次啥时候有空再扯一篇文章出来吧，表打我ヽ(✿ﾟ▽ﾟ)ノ 我尽力了。</p>
 <p>话说   那个。。让我不要脸的开启一下打赏功能</p>
-<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/dashang.jpg?Expires=1533611628&amp;OSSAccessKeyId=TMP.AQHiJp1ISU0KJxRej42mqT6NuNCGCutXgP89NkLKNFphw1byS2zp_FhZe80uADAtAhRFHrdFzC_x_CCdLAe-hAOCPcmecAIVAMZJIYrWBxNH6LzG0B8QczsNgq3A&amp;Signature=uA6qNNKwHuBaDUpMUFOTgMoVdTg%3D" alt=""></p>
+<p><img src="https://hexo-blog-chenxuan.oss-cn-beijing.aliyuncs.com/dashang.jpg" alt=""></p>
 
       
     </div>
