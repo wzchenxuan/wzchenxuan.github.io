@@ -412,148 +412,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/校内网络安全实验平台部分接口详细说明文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wzchenxuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/toux.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chenxuan的个人站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/01/校内网络安全实验平台部分接口详细说明文档/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-01T22:19:57+08:00">
-                2019-01-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-01T22:19:57+08:00">
-                2019-01-01
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="课程添加"><a href="#课程添加" class="headerlink" title="课程添加"></a>课程添加</h2><h3 id="POST-course-v1-course"><a href="#POST-course-v1-course" class="headerlink" title="POST [/course/v1/course]"></a><a href="">POST</a> [/course/v1/course]</h3><p><strong>示例json:</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cdescribe"</span>: <span class="string">"课程的描述"</span>,</span><br><span class="line">  <span class="attr">"cname"</span>: <span class="string">"课程的名称"</span>,</span><br><span class="line">  <span class="attr">"courseTempletes"</span>: [ //模板列表，大于等于一个课程模板</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="attr">"id"</span>: <span class="number">1</span> //模板的ID</span><br><span class="line">    &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="attr">"id"</span>: <span class="number">7</span> </span><br><span class="line">   &#125;],</span><br><span class="line">  <span class="attr">"img"</span>: <span class="string">"课程图片URL"</span>, </span><br><span class="line">  <span class="attr">"tag"</span>: <span class="string">"课程标签名"</span> </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="课程修改"><a href="#课程修改" class="headerlink" title="课程修改"></a>课程修改</h2><h3 id="PUT-course-v1-course-courseId"><a href="#PUT-course-v1-course-courseId" class="headerlink" title="PUT /course/v1/course/{courseId}"></a><a href="">PUT</a> <a href="">/course/v1/course/{courseId}</a></h3><p><strong>示例json:</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cdescribe"</span>: <span class="string">"课程的描述"</span>,</span><br><span class="line">  <span class="attr">"cname"</span>: <span class="string">"课程的名称"</span>,</span><br><span class="line">  <span class="attr">"courseTempletes"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="number">8</span> //模板的ID</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"img"</span>: <span class="string">"课程图片URL"</span>,</span><br><span class="line">  <span class="attr">"tag"</span>: <span class="string">"课程标签名"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="报告添加"><a href="#报告添加" class="headerlink" title="报告添加"></a>报告添加</h2><h3 id="POST-report-v1-report"><a href="#POST-report-v1-report" class="headerlink" title="POST /report/v1/report"></a><a href="">POST</a> <a href="">/report/v1/report</a></h3><p><strong>示例json:</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"content"</span>: <span class="string">"报告的内容"</span>,</span><br><span class="line">  "courseId": 2, //</span><br><span class="line">  "courseTemplete": &#123; </span><br><span class="line">      "id": 8 //当前模板的ID</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="报告添加-1"><a href="#报告添加-1" class="headerlink" title="报告添加"></a>报告添加</h2><h3 id="POST-report-v1-report-1"><a href="#POST-report-v1-report-1" class="headerlink" title="POST /report/v1/report"></a><a href="">POST</a> <a href="">/report/v1/report</a></h3><p><strong>示例json:</strong></p>
-<p>学生修改报告</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"content"</span>: <span class="string">"报告更新的内容"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>教师修改报告</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"grade"</span>: <span class="string">"87"</span>,</span><br><span class="line">   <span class="attr">"remark"</span>: <span class="string">"教师打分报告的评注"</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/docker制作基于ubuntu14.04的Mysql+tomcat7+jdk8镜像/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1805,6 +1663,164 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/26/IO知识点总结（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wzchenxuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/toux.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenxuan的个人站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/26/IO知识点总结（一）/" itemprop="url">IO知识点总结（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T00:00:00+08:00">
+                2017-05-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-20T14:58:27+08:00">
+                2018-11-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java回顾复习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java回顾复习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SE部分的学习快要结束啦，回顾了一下基础内容，发现遗忘了很多，总结一下自己的学习状态就是:理论看的太多，敲得太少，导致后期遗忘速度快。这里打算自己认真敲一遍知识点demo，做一个复习总结。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/26/IO知识点总结（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1859,7 +1875,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
