@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="chenxuan的个人站">
 <meta property="og:description" content="之前因为交付靶机的事情耽误了点时间，从十月份开始画表和确定实体类，课余也做了两个月左右了，前台的接口基本完成。此处作为swagger文档的补充，列出部分添加修改的接口，这里有比较详细的json示例，以及详细参数说明，测试接口请操作swagger,若有不合理的情况以及BUG出现,请给我留言">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-02T01:14:06.197Z">
+<meta property="og:updated_time" content="2019-01-08T12:09:08.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="校内网络安全实验平台部分接口详细说明文档">
 <meta name="twitter:description" content="之前因为交付靶机的事情耽误了点时间，从十月份开始画表和确定实体类，课余也做了两个月左右了，前台的接口基本完成。此处作为swagger文档的补充，列出部分添加修改的接口，这里有比较详细的json示例，以及详细参数说明，测试接口请操作swagger,若有不合理的情况以及BUG出现,请给我留言">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-02T09:14:06+08:00">
-                2019-01-02
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-08T20:09:08+08:00">
+                2019-01-08
               </time>
             
           </span>
@@ -362,6 +362,7 @@
 <p><strong>示例json:</strong></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cdescribe"</span>: <span class="string">"课程的描述"</span>,</span><br><span class="line">  <span class="attr">"cname"</span>: <span class="string">"课程的名称"</span>,</span><br><span class="line">  <span class="attr">"courseTempletes"</span>: [ //模板列表，大于等于一个课程模板</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="attr">"id"</span>: <span class="number">1</span> //模板的ID</span><br><span class="line">    &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="attr">"id"</span>: <span class="number">7</span> </span><br><span class="line">   &#125;],</span><br><span class="line">  <span class="attr">"img"</span>: <span class="string">"课程图片URL"</span>, </span><br><span class="line">  <span class="attr">"tag"</span>: <span class="string">"课程标签名"</span> </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="课程修改"><a href="#课程修改" class="headerlink" title="课程修改"></a>课程修改</h2><h3 id="PUT-course-v1-course-courseId"><a href="#PUT-course-v1-course-courseId" class="headerlink" title="PUT /course/v1/course/{courseId}"></a><a href="">PUT</a> <a href="">/course/v1/course/{courseId}</a></h3><p>修改课程：可修改参数为Cdescribe，Cname，Img，Tag，CourseTempletes（同样传入ID即可）</p>
+<p><strong>没修改的部分传入原始数据即可</strong></p>
 <p><strong>示例json:</strong></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cdescribe"</span>: <span class="string">"课程的描述"</span>,</span><br><span class="line">  <span class="attr">"cname"</span>: <span class="string">"课程的名称"</span>,</span><br><span class="line">  <span class="attr">"courseTempletes"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="number">8</span> //模板的ID</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"img"</span>: <span class="string">"课程图片URL"</span>,</span><br><span class="line">  <span class="attr">"tag"</span>: <span class="string">"课程标签名"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="报告添加"><a href="#报告添加" class="headerlink" title="报告添加"></a>报告添加</h2><h3 id="POST-report-v1-report"><a href="#POST-report-v1-report" class="headerlink" title="POST /report/v1/report"></a><a href="">POST</a> <a href="">/report/v1/report</a></h3><p>学生添加报告传入与此报告相关课程的id（必填），及报告实体类Report的Content（内容），CourseTemplete（此处填入模板ID即可，必填字段）</p>
